@@ -1,491 +1,217 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja" class="scroll-smooth">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blue Network - Protect Water Resources</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-/* Theme Colors */
-:root {
-  --primary: #0277bd;
-  --secondary: #0288d1;
-  --accent: #4fc3f7;
-  --light: #e1f5fe;
-  --dark: #01579b;
-  --text: #333;
-  --white: #fff;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>『ぼっち・ざ・ろっく！』の世界へようこそ | Auroraブログ</title>
+    <script src="https://cdn.tailwindcss.com/3.4.1"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Mochiy+Pop+One&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #FFF0F5; /* 淡いピンク背景 */
+            color: #4A4A4A; /* ダークグレー */
+            margin: 0;
+            padding: 0;
+        }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+        h1, h2, h3 {
+            font-family: 'Mochiy Pop One', sans-serif; /* 見出しはポップなフォント */
+        }
 
-body {
-  background-color: var(--light);
-  color: var(--text);
-  line-height: 1.6;
-}
+        /* グラデーション */
+        .header-gradient {
+             background: linear-gradient(180deg, rgba(255,240,245,1) 0%, rgba(255,240,245,0.8) 70%, rgba(255,240,245,0) 100%);
+        }
 
-header {
-  background: linear-gradient(to right, var(--primary), var(--secondary));
-  color: var(--white);
-  padding: 1rem 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+        /* アニメーション */
+        .content-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+        }
 
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+        .card-hover-effect {
+            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px -5px rgba(245, 169, 184, 0.3); /* ピンクの影 */
+        }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.8rem;
-  font-weight: 700;
-}
+        /* ギザギザセクション区切り */
+        .zigzag-divider {
+            position: relative;
+            padding: 20px 0;
+            margin: 30px 0;
+        }
+        .zigzag-divider:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 10px;
+            background: linear-gradient(45deg, transparent 49%, #F5A9B8 49%, #F5A9B8 51%, transparent 51%) 0 0 / 14px 10px,
+                        linear-gradient(-45deg, transparent 49%, #F5A9B8 49%, #F5A9B8 51%, transparent 51%) 0 0 / 14px 10px;
+            background-repeat: repeat-x;
+        }
 
-.logo i {
-  font-size: 2rem;
-}
+        /* 画像のサイズ調整 */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
 
-nav ul {
-  display: flex;
-  list-style: none;
-}
+        /* スムーズなアニメーション */
+        .animate-float {
+            animation: floatUp 3s ease-in-out infinite;
+        }
 
-nav ul li {
-  margin-left: 2rem;
-}
-
-nav ul li a {
-  color: var(--white);
-  text-decoration: none;
-  font-weight: 500;
-  transition: 0.3s;
-  padding: 0.5rem 0;
-  position: relative;
-}
-
-nav ul li a:hover {
-  color: var(--accent);
-}
-
-nav ul li a::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--accent);
-  transition: 0.3s;
-}
-
-nav ul li a:hover::after {
-  width: 100%;
-}
-
-/* Hero */
-.hero {
-  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=2100&q=80');
-  background-size: cover;
-  background-position: center;
-  height: 80vh;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: var(--white);
-}
-
-.hero-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.hero h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.hero p {
-  font-size: 1.3rem;
-  margin-bottom: 2rem;
-}
-
-.btn {
-  display: inline-block;
-  background-color: var(--accent);
-  color: var(--white);
-  padding: 0.8rem 2rem;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: 0.3s;
-  border: none;
-  cursor: pointer;
-}
-
-.btn:hover {
-  background-color: var(--primary);
-  transform: translateY(-3px);
-}
-
-section {
-  padding: 5rem 0;
-}
-
-.section-title {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.section-title h2 {
-  font-size: 2.5rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-  position: relative;
-  display: inline-block;
-}
-
-.section-title h2::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80px;
-  height: 4px;
-  background-color: var(--accent);
-  border-radius: 2px;
-}
-
-/* About */
-.about-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-}
-
-.about-img img {
-  width: 100%;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.about-text h3 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: var(--dark);
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  margin-top: 3rem;
-}
-
-.stat-item {
-  text-align: center;
-  background: var(--white);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.stat-item i {
-  font-size: 2.3rem;
-  color: var(--primary);
-  margin-bottom: 1rem;
-}
-
-.stat-item h3 {
-  font-size: 2.2rem;
-  color: var(--dark);
-}
-
-/* Initiatives */
-.initiatives-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
-}
-
-.initiative-card {
-  background: var(--white);
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-  transition: 0.3s;
-}
-
-.initiative-card:hover {
-  transform: translateY(-10px);
-}
-
-.initiative-img img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-
-.initiative-content {
-  padding: 1.5rem;
-}
-
-.initiative-content h3 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--dark);
-}
-
-/* CTA */
-.cta {
-  background: linear-gradient(to right, var(--primary), var(--secondary));
-  color: var(--white);
-  text-align: center;
-  padding: 5rem 0;
-}
-
-/* Footer */
-footer {
-  background-color: var(--dark);
-  color: var(--white);
-  padding: 3rem 0 1rem;
-}
-
-.footer-content {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.footer-links li {
-  margin-bottom: 0.8rem;
-}
-
-.footer-links a {
-  color: var(--light);
-  text-decoration: none;
-  transition: 0.3s;
-}
-
-.footer-links a:hover {
-  color: var(--accent);
-  padding-left: 5px;
-}
-
-/* Responsive */
-@media(max-width:992px){
-  .about-content, .initiatives-grid, .footer-content, .stats {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media(max-width:768px){
-  nav ul { display:none; }
-  nav ul.active { display:flex; flex-direction:column; background:var(--primary); }
-  .mobile-menu { display:block; color:var(--white); font-size:1.5rem; cursor:pointer; }
-  .about-content, .initiatives-grid, .footer-content, .stats { grid-template-columns:1fr; }
-}
-</style>
+        @keyframes floatUp {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
 </head>
-<body>
-<header>
-  <div class="container nav-container">
-    <div class="logo"><i class="fas fa-water"></i> Blue Network</div>
-    <nav>
-      <div class="mobile-menu"><i class="fas fa-bars"></i></div>
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#initiatives">Initiatives</a></li>
-        <li><a href="#get-involved">Get Involved</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </div>
-</header>
+<body class="bg-light-bg text-gray-700 antialiased">
 
-<section class="hero" id="home">
-  <div class="container hero-content">
-    <h1>Protect Our Water, Sustain Life</h1>
-    <p>Join us in safeguarding global freshwater and ocean resources through innovation, education, and community action.</p>
-    <a href="#get-involved" class="btn">Join the Movement</a>
-  </div>
-</section>
-
-<section id="about">
-  <div class="container">
-    <div class="section-title">
-      <h2>About Blue Network</h2>
-      <p>We are dedicated to protecting the world's water resources for future generations.</p>
-    </div>
-    <div class="about-content">
-      <div class="about-img">
-        <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=2070&q=80" alt="Clean Water Projects">
-      </div>
-      <div class="about-text">
-        <h3>Our Mission</h3>
-        <p>Blue Network empowers communities, supports clean-water technologies, and promotes sustainable water management.</p>
-        <p>Since 2012, we’ve developed global solutions impacting rivers, lakes, oceans, and groundwater ecosystems.</p>
-        <a href="#" class="btn">Learn More</a>
-      </div>
-    </div>
-
-    <div class="stats">
-      <div class="stat-item">
-        <i class="fas fa-tint"></i>
-        <h3 class="counter" data-target="3500">0</h3>
-        <p>Clean Water Projects</p>
-      </div>
-      <div class="stat-item">
-        <i class="fas fa-users"></i>
-        <h3 class="counter" data-target="80000">0</h3>
-        <p>Volunteers</p>
-      </div>
-      <div class="stat-item">
-        <i class="fas fa-water"></i>
-        <h3 class="counter" data-target="95">0</h3>
-        <p>Countries Reached</p>
-      </div>
-      <div class="stat-item">
-        <i class="fas fa-hand-holding-water"></i>
-        <h3 class="counter" data-target="1200">0</h3>
-        <p>Water Protection Campaigns</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="initiatives" id="initiatives">
-  <div class="container">
-    <div class="section-title">
-      <h2>Our Initiatives</h2>
-      <p>Explore the major programs supporting clean and sustainable water worldwide.</p>
-    </div>
-
-    <div class="initiatives-grid">
-      <div class="initiative-card">
-        <div class="initiative-img"><img src="https://images.unsplash.com/photo-1748453763498-42b8fed6df85"></div>
-        <div class="initiative-content">
-          <h3>Clean Rivers Program</h3>
-          <p>Reducing pollution, restoring river ecosystems, and ensuring clean water flow.</p>
-          <a href="#" class="btn">Learn More</a>
+    <!-- ヘッダー -->
+    <header class="header-gradient sticky top-0 z-40 py-3 sm:py-4 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+            <a href="#" id="logo" class="text-2xl sm:text-3xl font-header bocchi-pink-text tracking-tight">
+                <i class="fas fa-guitar bocchi-blue-text mr-2"></i>ぼっち・ざ・ぶろぐ！
+            </a>
         </div>
-      </div>
+    </header>
 
-      <div class="initiative-card">
-        <div class="initiative-img"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2070&q=80"></div>
-        <div class="initiative-content">
-          <h3>Ocean Protection</h3>
-          <p>Fighting marine pollution, supporting coral reefs, and restoring ocean health.</p>
-          <a href="#" class="btn">Learn More</a>
+    <!-- ヒーローセクション -->
+    <section class="relative pt-10 pb-10 md:pt-16 md:pb-12 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-bocchi-pink-light via-white to-bocchi-blue-light opacity-30"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <img src="https://pbs.twimg.com/media/Fh2gU2sVIAAx0KU.jpg:large" alt="結束バンド" class="w-full max-w-3xl mx-auto rounded-xl shadow-kawaii-lift mb-6 sm:mb-8 content-fade-in animate-float">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-header bocchi-pink-text mb-3 content-fade-in">
+                『ぼっち・ざ・ろっく！』
+            </h1>
+            <p class="text-xl sm:text-2xl bocchi-blue-text font-semibold mb-8 content-fade-in">
+                コミュ障陰キャギタリストの成長物語！
+            </p>
         </div>
-      </div>
+    </section>
 
-      <div class="initiative-card">
-        <div class="initiative-img"><img src="https://images.unsplash.com/photo-1492962827063-e5ea0d8c01f5"></div>
-        <div class="initiative-content">
-          <h3>Safe Drinking Water</h3>
-          <p>Providing clean water access, filtration systems, and community water education.</p>
-          <a href="#" class="btn">Learn More</a>
+    <!-- メインコンテンツ -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <article class="bg-content-bg p-6 sm:p-8 lg:p-10 rounded-xl shadow-kawaii content-fade-in">
+            
+            <!-- 作品概要 -->
+            <section class="mb-10 item-fade-in">
+                <h2 class="text-3xl bocchi-blue-text mb-4 border-l-4 border-bocchi-pink pl-3">作品概要</h2>
+                <p class="text-lg leading-relaxed mb-3">
+                    『ぼっち・ざ・ろっく！』は、はまじあき先生による日本の4コマ漫画作品、およびそれを原作としたテレビアニメです。
+                    極度の人見知りでコミュ障の少女「ぼっちちゃん」こと後藤ひとりが、ひょんなことから伊地知虹夏が率いる「結束バンド」に加入し、
+                    バンド活動を通じて少しずつ成長していく姿を描いた、音楽あり、笑いあり、ちょっぴり感動ありの青春コメディです。
+                </p>
+                <div class="flex justify-center my-6">
+                    <img src="https://www.thefirsttimes.jp/admin/wp-content/uploads/5000/06/20240606-ys-1604-01.jpg" alt="後藤ひとり" class="rounded-lg shadow-md">
+                </div>
+            </section>
+
+            <div class="zigzag-divider top item-fade-in"></div>
+
+            <!-- 魅力的なキャラクター -->
+            <section class="mb-10 item-fade-in">
+                <h2 class="text-3xl bocchi-pink-text mb-6 text-center"><i class="fas fa-users mr-2"></i>魅力的なキャラクターたち</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+                    <!-- キャラクターカード -->
+                    <div class="bg-bocchi-pink-light p-5 rounded-lg shadow-sm card-hover-effect">
+                        <img src="https://bocchi.rocks/omnibus/assets/img/page/top/mainvisual/slides/ph_compilation2_1.jpg" alt="伊地知虹夏" class="w-32 h-32 rounded-full mx-auto mb-3 border-4 border-bocchi-yellow shadow-lg">
+                        <h3 class="text-xl font-semibold bocchi-yellow-text text-center mb-1">伊地知 虹夏 (いじち にじか)</h3>
+                        <p class="text-sm text-center text-accent-gray mb-2">ドラム担当・結束バンドのまとめ役</p>
+                        <p class="text-gray-700 text-center">明るく世話好きで、バンドを引っ張る元気なドラマー。ぼっちちゃんをバンドに誘った張本人。</p>
+                    </div>
+
+                    <div class="bg-bocchi-blue-light p-5 rounded-lg shadow-sm card-hover-effect">
+                        <img src="https://bocchi.rocks/omnibus/assets/img/page/top/mainvisual/slides/ph_compilation3_1.png" alt="山田リョウ" class="w-32 h-32 rounded-full mx-auto mb-3 border-4 border-bocchi-blue shadow-lg">
+                        <h3 class="text-xl font-semibold bocchi-blue-text text-center mb-1">山田 リョウ (やまだ りょう)</h3>
+                        <p class="text-sm text-center text-accent-gray mb-2">ベース担当・クールな変人</p>
+                        <p class="text-gray-700 text-center">クールで無口だが、実は変わり者。音楽センスは抜群で、ぼっちちゃんの才能を認めている。</p>
+                    </div>
+
+                    <div class="bg-rose-100 p-5 rounded-lg shadow-sm card-hover-effect">
+                        <img src="https://bocchi.rocks/omnibus/assets/img/page/top/mainvisual/slides/ph_compilation4_1.png" alt="喜多郁代" class="w-32 h-32 rounded-full mx-auto mb-3 border-4 border-kessoku-red shadow-lg">
+                        <h3 class="text-xl font-semibold kessoku-red-text text-center mb-1">喜多 郁代 (きた いくよ)</h3>
+                        <p class="text-sm text-center text-accent-gray mb-2">ギターボーカル担当・陽キャ代表</p>
+                        <p class="text-gray-700 text-center">明るく社交的で、バンドのフロントマン。キラキラしたオーラを放つ人気者。</p>
+                    </div>
+
+                    <div class="bg-purple-100 p-5 rounded-lg shadow-sm card-hover-effect">
+                        <img src="https://bocchi.rocks/omnibus/assets/img/page/top/mainvisual/slides/ph_compilation_1.jpg" alt="後藤ひとり" class="w-32 h-32 rounded-full mx-auto mb-3 border-4 border-bocchi-pink shadow-lg object-cover">
+                        <h3 class="text-xl font-semibold bocchi-pink-text text-center mb-1">後藤 ひとり (ごとう ひとり)</h3>
+                        <p class="text-sm text-center text-accent-gray mb-2">ギター担当・主人公「ぼっちちゃん」</p>
+                        <p class="text-gray-700 text-center">ギターはプロ級だが、極度のコミュ障。承認欲求モンスターの一面も。ジャージがトレードマーク。</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="zigzag-divider bottom item-fade-in"></div>
+
+            <!-- 作品の魅力 -->
+            <section class="my-10 item-fade-in">
+                <h2 class="text-3xl bocchi-blue-text mb-4 border-l-4 border-bocchi-yellow pl-3">作品の魅力 <i class="fas fa-star text-bocchi-yellow"></i></h2>
+                <ul class="list-disc list-inside space-y-3 text-lg pl-2">
+                    <li><strong class="bocchi-pink-text">本格的な音楽とライブシーン:</strong> キャラクターたちが演奏する楽曲はクオリティが高く、ライブシーンの作画も圧巻！</li>
+                    <li><strong class="bocchi-yellow-text">爆笑必至のコメディ:</strong> ぼっちちゃんの奇行やシュールなギャグ、キャラクター同士の掛け合いがとにかく面白い！</li>
+                    <li><strong class="bocchi-blue-text">共感と応援したくなる主人公:</strong> コミュ障ながらも頑張るぼっちちゃんの姿に共感し、思わず応援したくなります。</li>
+                    <li><strong class="kessoku-red-text">魅力的なキャラクターと友情:</strong> 個性豊かな結束バンドのメンバーたちが織りなす友情や絆も見どころです。</li>
+                </ul>
+                <div class="flex justify-center my-8">
+                    <img src="https://img2.animatetimes.com/2022/12/3a3abf7c86b9fbe710166b692f52cb5b63a71f533b61a9_00475006_2573bc5d4d5ef8c20116c8d80e1f29915d1f2458.jpg" alt="結束バンド ライブ" class="rounded-lg shadow-md max-w-4xl w-full item-fade-in card-hover-effect">
+                </div>
+            </section>
+
+            <section class="text-center py-8 item-fade-in">
+                <h2 class="text-2xl sm:text-3xl font-header bocchi-pink-text mb-6">あなたも結束バンドの虜になること間違いなし！</h2>
+                <p class="text-lg mb-6">
+                    まだ『ぼっち・ざ・ろっく！』を観たことがない方は、ぜひこの機会にご覧ください！<br>
+                    原作漫画もアニメとはまた違った魅力があるので、あわせてチェックするのもおすすめです。
+                </p>
+                <a href="https://bocchi.rocks/" target="_blank" rel="noopener noreferrer" 
+                   class="inline-block bocchi-pink-bg text-white font-semibold text-lg py-3 px-8 rounded-full shadow-kawaii hover:bg-opacity-80 transition-all duration-300 transform hover:scale-105 ease-anime-bounce">
+                    <i class="fas fa-tv mr-2"></i>アニメ公式サイトへ
+                </a>
+            </section>
+
+        </article>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-800 text-gray-300 py-8 text-center mt-12">
+        <div class="container mx-auto px-4">
+            <p>&copy; <span id="current-year"></span> InsightFeed (ぼっち・ざ・ぶろぐ！). All rights reserved.</p>
+            <p class="text-sm mt-1">Crafted with <i class="fas fa-heart bocchi-pink-text mx-1"></i> by Aurora.</p>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </footer>
 
-<section class="cta" id="get-involved">
-  <div class="container">
-    <h2>Take Action for Clean Water</h2>
-    <p>Help us protect water resources that sustain life on Earth. Join global efforts today.</p>
-    <a href="#" class="btn">Become a Member</a>
-  </div>
-</section>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('current-year').textContent = new Date().getFullYear();
 
-<footer id="contact">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-column">
-        <h3>Blue Network</h3>
-        <p>Working together to safeguard freshwater and oceans across the world.</p>
-      </div>
+            // アイテムごとの遅延アニメーション適用 (オプション)
+            const animatedItems = document.querySelectorAll('.item-fade-in');
+            animatedItems.forEach((item, index) => {
+                const delay = parseFloat(item.style.animationDelay || "0s"); // 既存の遅延を取得
+                item.style.animationDelay = `${delay + (index * 0.05)}s`; // 微調整
+            });
+        });
+    </script>
 
-      <div class="footer-column">
-        <h3>Quick Links</h3>
-        <ul class="footer-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#initiatives">Initiatives</a></li>
-          <li><a href="#get-involved">Get Involved</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h3>Programs</h3>
-        <ul class="footer-links">
-          <li><a href="#">Clean Rivers</a></li>
-          <li><a href="#">Water Education</a></li>
-          <li><a href="#">Ocean Cleanup</a></li>
-          <li><a href="#">Groundwater Protection</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-column">
-        <h3>Contact Us</h3>
-        <p><i class="fas fa-map-marker-alt"></i> Blue Ocean Avenue, California</p>
-        <p><i class="fas fa-phone"></i> +1 (555) 345-7890</p>
-        <p><i class="fas fa-envelope"></i> support@bluenetwork.org</p>
-      </div>
-    </div>
-    <div class="copyright">
-      © 2025 Blue Network. All rights reserved.
-    </div>
-  </div>
-</footer>
-
-<script>
-// Mobile Menu
-const mobileMenu = document.querySelector('.mobile-menu');
-const navList = document.querySelector('nav ul');
-mobileMenu.addEventListener('click', () => navList.classList.toggle('active'));
-
-// Counter Animation
-function animateCounters() {
-  document.querySelectorAll('.counter').forEach(counter => {
-    const updateCount = () => {
-      const target = +counter.getAttribute('data-target');
-      const count = +counter.innerText;
-      const inc = target / 200;
-
-      if(count < target){ counter.innerText = Math.ceil(count + inc); setTimeout(updateCount, 1); }
-      else counter.innerText = target;
-    };
-    updateCount();
-  });
-}
-window.addEventListener('load', animateCounters);
-</script>
 </body>
 </html>
